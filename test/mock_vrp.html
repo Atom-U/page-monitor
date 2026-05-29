@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Android VRP Mock Page</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+    .loader { color: #888; font-style: italic; }
+    h1 { color: #1a73e8; }
+    .reward { background: #f0f7ff; padding: 15px; border-left: 4px solid #1a73e8; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <h1>🤖 Android VRP — Mock Version</h1>
+  <div id="content">
+    <p class="loader">⏳ Loading dynamic content...</p>
+  </div>
+
+  <script>
+    // ⚠️ THIS IS THE KEY PART:
+    // The "real" content is injected by JavaScript AFTER 2 seconds
+    // A simple `curl` or `requests.get()` would return ONLY the loader message
+    // Playwright (headless browser) will WAIT for this JS to run
+    setTimeout(() => {
+      document.getElementById('content').innerHTML = `
+        <h2>Reward Structure</h2>
+        <div class="reward">
+          <strong>Critical RCE:</strong> Up to $1,500,000
+        </div>
+        <div class="reward">
+          <strong>High severity:</strong> Up to $500,000
+        </div>
+        <div class="reward">
+          <strong>Medium severity:</strong> Up to $250,000
+        </div>
+        <p><em>Last updated: CHANGE_THIS_TEXT_TO_TEST</em></p>
+      `;
+    }, 2000);
+  </script>
+</body>
+</html>
