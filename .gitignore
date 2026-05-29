@@ -1,0 +1,15 @@
+# Don't commit the temporary changes file — regenerated each run
+latest_changes.md
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local test artifacts (never part of production state)
+test/test_hashes.json
+test/test_snapshots/
+
+# OS
+.DS_Store
