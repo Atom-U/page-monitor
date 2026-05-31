@@ -13,9 +13,10 @@ WHAT THIS DOES (plain English):
   5. If NOTHING changed, it deletes latest_changes.md (if present)
      so the Claude Routine knows there is nothing to report.
 
-This script does NOT talk to Discord. The Claude Routine reads
-latest_changes.md, summarizes it, and posts to Discord. Keeping
-the two jobs separate makes this script deterministic and free.
+This script does NOT talk to Discord. A separate step
+(notify_discord.py) reads latest_changes.md and posts it to a
+Discord webhook. Keeping the two jobs separate makes this
+script deterministic and free.
 ================================================================
 """
 
