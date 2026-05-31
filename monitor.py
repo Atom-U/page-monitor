@@ -86,7 +86,7 @@ def main():
     first_run = len(old_hashes) == 0
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=True, args=["--ignore-certificate-errors"])
 
         for name, url in PAGES.items():
             print(f"\n📄 Fetching: {name}...")
