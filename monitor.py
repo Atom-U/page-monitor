@@ -134,7 +134,7 @@ def launch_browser(p):
     launch_args = {
         "headless": True,
         # These flags are required to run Chromium inside containers/CI.
-        "args": ["--no-sandbox", "--disable-dev-shm-usage"],
+        "args": ["--no-sandbox", "--disable-dev-shm-usage", "--ignore-certificate-errors"],
     }
     if CHROME_PATH:
         launch_args["executable_path"] = CHROME_PATH
