@@ -39,7 +39,6 @@ PAGES = {
     "Severity Ratings": "https://source.android.com/docs/security/overview/updates-resources#severity",
     "About Rules": "https://bughunters.google.com/about/rules/about-this-section",
     "ASB Overview": "https://source.android.com/docs/security/bulletin/asb-overview",
-    "Bug Hunters Leaderboard": "https://bughunters.google.com/leaderboard",
     "Bug Hunters Blog": "https://bughunters.google.com/blog",
 }
 
