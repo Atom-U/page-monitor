@@ -94,9 +94,9 @@ MIN_CONTENT_CHARS = 500
 
 
 # ─── FETCH ONE PAGE (WAITING FOR JAVASCRIPT) ──────────────────────
-def fetch_page_content(url, browser):
+def fetch_page_content(url, browser_or_context):
     """Open `url` in the headless browser, wait for JS, return article text."""
-    page = browser.new_page()
+    page = browser_or_context.new_page()
     try:
         page.goto(url, wait_until="networkidle", timeout=30000)
         page.wait_for_timeout(3000)
@@ -238,7 +238,7 @@ def launch_browser(p):
     launch_args = {
         "headless": True,
         # These flags are required to run Chromium inside containers/CI.
-        "args": ["--no-sandbox", "--disable-dev-shm-usage"],
+        "args": ["--no-sandbox", "--disable-dev-shm-usage", "--ignore-certificate-errors"],
     }
     if CHROME_PATH:
         launch_args["executable_path"] = CHROME_PATH
@@ -259,10 +259,11 @@ def main():
 
     with sync_playwright() as p:
         browser = launch_browser(p)
+        context = browser.new_context(ignore_https_errors=True)
 
         for name, url in PAGES.items():
             print(f"\n📄 {name}...")
-            content = fetch_page_content(url, browser)
+            content = fetch_page_content(url, context)
 
             if content is not None and name in CLEANERS:
                 content = CLEANERS[name](content)
