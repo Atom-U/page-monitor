@@ -242,6 +242,10 @@ def launch_browser(p):
     }
     if CHROME_PATH:
         launch_args["executable_path"] = CHROME_PATH
+    # Route through the outbound proxy if one is configured in the environment.
+    proxy_url = os.environ.get("HTTPS_PROXY") or os.environ.get("HTTP_PROXY")
+    if proxy_url:
+        launch_args["proxy"] = {"server": proxy_url}
     return p.chromium.launch(**launch_args)
 
 
